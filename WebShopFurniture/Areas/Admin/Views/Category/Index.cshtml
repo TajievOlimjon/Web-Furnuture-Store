@@ -1,0 +1,44 @@
+﻿@model List<Category>
+
+<h1>Все заказы</h1>
+
+<table class=" table">
+    <a asp-action="Create" asp-controller="Category" class="btn btn-sm btn-success">
+        Добавить
+    </a>
+    <thead>
+        <tr>
+            <th class="col">Названия категории</th>
+            <th class="col">Краткое описания</th>
+            <th class="col">Полное описания</th>
+
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.CategoryName</td>
+                <td>@x.ShortDesc</td>
+                <td>@x.FullDesc</td>
+
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-controller="Category" asp-route-id="@x.Id" id="Edit">
+                        Изменить
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-action="Delete" asp-controller="Category" asp-route-id="@x.Id" id="Delete">
+                        Удалить
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

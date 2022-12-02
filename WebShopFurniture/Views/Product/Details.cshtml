@@ -1,0 +1,17 @@
+﻿@model GetProductDto
+
+<div >
+    <div class="card-body">
+        <div class="user-profile" style="text-align: center">
+            <img width="500" height="400" src="~/Image/@Model.Image" alt="@Model.ProductName">
+        </div>
+        <div class="user-info" style="text-align: center">
+            <h5 class="card-user_name">@Model.ProductName</h5>
+            <p class="card-user_occupation">@Model.ShortDesc</p>
+            <p class="card-user_occupation">@Model.FullDesc</p>
+            <p class="card-user_occupation">@Model.FurnitureMadeOf</p>
+            <p class="card-user_occupation">@Model.Manafacturer</p>
+            <p class="card-user_occupation">@Model.date</p> @*Дата производства*@
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model List<Order>
+
+<h1>Все заказы</h1>
+
+<table class=" table">
+    <a asp-action="Create" asp-controller="Product" class="btn btn-sm btn-success">
+        Добавить
+    </a>
+    <thead>
+        <tr>
+            <th class="col">Количество заказанного продукта</th>
+            <th class="col">Дата заказа</th>
+            <th class="col">Заказчик</th>
+            <th class="col">Э-почта</th>
+            <th class="col">Телефон</th>
+            <th class="col">Названия продукта</th>
+            <th class="col">Фото продукта</th>
+
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Quantity</td>
+                <td>@x.OrderDate</td>
+                <td>@x.Customer.FirstName @x.Customer.LastName</td>
+                <td>@x.Customer.Email</td>
+                <td>@x.Customer.PhoneNumber</td>
+                <td>@x.Product.ProductName</td>
+                <td><img class="img-thumbnail" src="~/Images/@x.Product.Image" /></td>
+            </tr>
+        }
+    </tbody>
+</table>

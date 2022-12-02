@@ -1,0 +1,42 @@
+﻿@model List<Customer>
+
+<h1>Все заказы</h1>
+
+<table class=" table">
+    <thead>
+        <tr>
+            <th class="col">Имя</th>
+            <th class="col">Фамилия</th>
+            <th class="col">Возрасть</th>
+            <th class="col">Э-почта</th>
+            <th class="col">Номер телефона</th>
+            <th class="col">Дата заказа</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.FirstName</td>
+                <td>@x.LastName</td>
+                <td>@x.Age</td>
+                <td>@x.Email</td>
+                <td>@x.PhoneNumber</td>
+                <td>@x.OrderTime</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
