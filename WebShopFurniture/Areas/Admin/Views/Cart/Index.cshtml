@@ -1,0 +1,37 @@
+﻿@model List<Cart>
+
+<h1>Все заказы</h1>
+
+<table class=" table">
+    <thead>
+        <tr>
+            <th class="col">Названия</th>
+            <th class="col">Цена</th>
+            <th class="col">Количество заказов</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Product.ProductName</td>
+                <td>@x.Product.Price</td>
+                <td>@x.Quantity</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

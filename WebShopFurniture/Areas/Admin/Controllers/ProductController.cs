@@ -23,12 +23,11 @@ namespace WebShopFurniture.Areas.Admin.Controllers
             return View(products);
         }
 
-        public async ValueTask<ActionResult<GetProductDto>> Details(int id)
+        public async ValueTask<ActionResult<ProductDto>> Details(int id)
         {
-            
-                 var product = await _service.GetProductByIdAsync(id);
-                 return View(product);           
-                   
+            var product = await _service.GetProductByIdAsync(id);
+                 
+            return View(product);
         }
 
         public async ValueTask<IActionResult> Create()
@@ -48,6 +47,7 @@ namespace WebShopFurniture.Areas.Admin.Controllers
                 await _serviceCat.GetCategoriesAsync();
             ViewBag.Categories = category;
 
+            dto.CreateAt = DateTimeOffset.UtcNow;
             try
             { 
                 if (ModelState.IsValid)
@@ -67,33 +67,49 @@ namespace WebShopFurniture.Areas.Admin.Controllers
        
         public async ValueTask<IActionResult> Edit(int id)
         {
-            return View(await Details(id));
-        }
+            var category =
+               await _serviceCat.GetCategoriesAsync();
+            ViewBag.Categories = category;
 
-        public async ValueTask<IActionResult> Edit(ProductDto dto)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                  await  _service.UpdateProductAsync(dto);
-                    return RedirectToAction("Index");
-                }
-                return View(dto);
-            }
-            catch (Exception ex)
-            {   
-                _logger.LogError(ex.Message, "В коде ест ошибка !");
-                 throw new Exception(ex.Message);               
-            }
-        }
-        public async ValueTask<IActionResult> Delete(int id)
-        {
-            return View( await Details(id));
+            var product =
+                await _service.GetProductByIdAsync(id);
+
+            return View(product);
         }
 
         [HttpPost]
-        public async ValueTask<IActionResult?> Delete(int id, byte i = 0)
+        public async ValueTask<IActionResult> Edit(ProductDto dto)
+        {
+            //try
+            //{
+                var category =
+               await _serviceCat.GetCategoriesAsync();
+                ViewBag.Categories = category;
+
+                if (ModelState.IsValid)
+                {
+                    await  _service.UpdateProductAsync(dto);
+                    return RedirectToAction("Index");
+                }
+               
+                return View(dto);
+            //}
+            //catch (Exception ex)
+            //{   
+            //    _logger.LogError(ex.Message.ToString(), "В коде ест ошибка !");
+            //     throw new Exception("",ex.InnerException);
+            //}
+        }
+        public async ValueTask<IActionResult> Delete(int id)
+        {
+            var product =
+                await _service.GetProductByIdAsync(id);
+
+            return View(product);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async ValueTask<IActionResult?> DeleteConfirmed(int id)
         {
             if (id.Equals(null)) return null;
 

@@ -1,6 +1,6 @@
 ﻿@model List<ProductDto>
 
-<h1>Все заказы</h1>
+<h1>Все мебелы</h1>
 
 <table class=" table">
     <a asp-action="Create" asp-controller="Product" class="btn btn-sm btn-success">
@@ -11,12 +11,11 @@
             <th class="col">Названия продукта</th>
             <th class="col">Производитель</th>
             <th class="col">Краткое описания</th>
-            <th class="col">Полное описания</th>
             <th class="col">Дата производства</th>
-            <th class="col">Материал</th>
             <th class="col">Цена</th>
             <th class="col">Количество</th>
-            <th class="col">Фото</th>
+            <th class="col">Доступенли</th>
+           @* <th class="col">Фото</th>*@
 
 
 
@@ -30,16 +29,29 @@
                 <td>@x.ProductName</td>
                 <td>@x.Manafacturer</td>
                 <td>@x.ShortDesc</td>
-                <td>@x.FullDesc</td>
-                <td>@x.date</td>
-                <td>@x.FurnitureMadeOf</td>
+                <td>@x.date.ToString("dd/MM/yyyy")</td>
                 <td>@x.Price</td>
                 <td>@x.Quantity</td>
-                <td><img class="img-thumbnail" src="~/Images/@x.Image" /></td>
+                @if (@x.AvailableProduct==true)
+                {
+                    <td>Да</td>
+                    
+                }
+                else
+                {
+                   <td>Нет</td>
+                }
+
+               @* <td><img  src="~/Image/@x.Image" alt="@x.ProductName" style="width:auto;height:400px;"/></td>*@
 
                 <td>
                     <a class="btn btn-warning" asp-action="Edit" asp-controller="Product" asp-route-id="@x.Id" id="Edit">
                         Изменить
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-action="Details" asp-controller="Product" asp-route-id="@x.Id" id="Details">
+                        Подробне
                     </a>
                 </td>
                 <td>

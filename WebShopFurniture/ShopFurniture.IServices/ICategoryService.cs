@@ -6,7 +6,7 @@ namespace WebShopFurniture.ShopFurniture.IServices
     public interface ICategoryService
     {
         ValueTask<List<Category>> GetCategoriesAsync();
-        ValueTask<Category> GetCategoryById(int Id);
+        ValueTask<CategoryDto> GetCategoryById(int Id);
         ValueTask<int> AddCategoryAsync(CategoryDto category);
         ValueTask<int> UpdateCategoryAsync(CategoryDto category);
         ValueTask<int> DeleteCategoryAsync(int Id);

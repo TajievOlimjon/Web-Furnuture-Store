@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using WebShopFurniture.Models.Entities;
 using WebShopFurniture.ShopFurniture.IServices;
 
@@ -23,10 +24,13 @@ namespace WebShopFurniture.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await _service.AddToOrder(customer);
-                    return RedirectToAction("Result");
+                   var x= await _service.AddToOrder(customer);
+
+                    if (x != 0) return RedirectToAction("Result");
+
+                    return View(customer);
                 }
-                return View(customer);
+                return View(HttpStatusCode.InternalServerError);
             }
             catch (Exception ex)
             {

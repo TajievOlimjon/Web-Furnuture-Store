@@ -6,7 +6,7 @@ namespace WebShopFurniture.ShopFurniture.IServices
     public interface IProductService
     {
         ValueTask<List<ProductDto>> GetProductsAsync();
-        ValueTask<GetProductDto> GetProductByIdAsync(int Id);
+        ValueTask<ProductDto> GetProductByIdAsync(int Id);
         ValueTask<int> AddProductAsync(ProductDto product);
         ValueTask<int> UpdateProductAsync(ProductDto product);
         ValueTask<int> DeleteProductAsync(int Id);

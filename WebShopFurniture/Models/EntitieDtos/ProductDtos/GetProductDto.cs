@@ -12,6 +12,7 @@
         public int Quantity { get; set; }
         public string Image { get; set; }
         public string Manafacturer { get; set; }
+        public bool AvailableProduct { get; set; }
         public DateTimeOffset CreateAt { get; set; }
         public int CategoryId { get; set; }
     }

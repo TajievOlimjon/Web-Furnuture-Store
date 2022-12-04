@@ -3,7 +3,7 @@
     <h3>Изменение категории</h3>
 
     <form asp-action="Edit" asp-controller="Category" method="post" class="form-horizontal">
-
+        <input type="hidden" asp-for="Id"  />
         <div class="form-group">
             <label asp-for="CategoryName"></label>
             <div class="col-md-5">

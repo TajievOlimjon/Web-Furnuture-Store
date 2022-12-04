@@ -51,13 +51,13 @@ namespace WebShopFurniture.ShopFurniture.Services
             return categories;
         }
 
-        public async ValueTask<Category> GetCategoryById(int Id)
+        public async ValueTask<CategoryDto> GetCategoryById(int Id)
         {
             var x= await _context.Categories.FindAsync(Id);
 
-            if (x == null) return new Category();
+            var category = _mapper.Map<CategoryDto>(x);
 
-            return x;
+            return category;
         }
 
         public async ValueTask<int> UpdateCategoryAsync(CategoryDto category)

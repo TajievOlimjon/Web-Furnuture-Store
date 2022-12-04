@@ -12,21 +12,21 @@ namespace WebShopFurniture.Areas.Admin.Controllers
         {
             _service = service;
         }
-
+        [HttpGet]
         public async ValueTask<IActionResult> Index()
         {
             var categories = await _service.GetCategoriesAsync();
 
             return View(categories);
         }
-
-        public async ValueTask<ActionResult<Category>> Details(int id)
+        [HttpGet]
+        public async ValueTask<ActionResult<CategoryDto>> Details(int id)
         {
             var category = await _service.GetCategoryById(id);
 
             return View(category);
         }
-
+        [HttpGet]
         public IActionResult Create()
         {
             return View(new CategoryDto());
@@ -50,10 +50,13 @@ namespace WebShopFurniture.Areas.Admin.Controllers
                 throw new Exception(ex.Message);
             }
         }
-
+        [HttpGet]
         public async ValueTask<IActionResult> Edit(int Id)
         {
-            return View(await Details(Id));
+            var item =
+                await _service.GetCategoryById(Id);
+
+            return View(item);
         }
 
         [HttpPost]
@@ -71,16 +74,20 @@ namespace WebShopFurniture.Areas.Admin.Controllers
             catch (Exception ex)
             {
               //  _logger.LogError(ex.Message, "В коде ест ошибка !");
-                throw new Exception(ex.Message);
+                throw new /*Exception(ex.Message);*/ InvalidOperationException("",ex);
             }
         }
-        public async ValueTask<IActionResult> Delete(int id)
+        [HttpGet]
+        public async ValueTask<IActionResult> Delete(int Id)
         {
-            return View(await Details(id));
+            var item =
+                await _service.GetCategoryById(Id);
+
+            return View(item);
         }
 
-        [HttpPost]
-        public async ValueTask<IActionResult?> Delete(int id, byte i = 0)
+        [HttpPost,ActionName("Delete")]
+        public async ValueTask<IActionResult?> DeleteComfirmed(int id)
         {
             if (id.Equals(null)) return null;
 

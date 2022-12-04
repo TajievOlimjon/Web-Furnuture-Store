@@ -8,8 +8,9 @@ namespace WebShopFurniture.Entities.Mappers
     {
         public MapperEntities()
         {
-            CreateMap<ProductDto, Product>().ReverseMap();
-            CreateMap<GetProductDto, ProductDto>().ReverseMap();
+            CreateMap<ProductDto, Product>().ReverseMap()
+                .ForMember(dest=>dest.Img,act=>act.MapFrom(src=>src.Image));
+            CreateMap<GetProductDto, Product>().ReverseMap();
             CreateMap<CategoryDto,Category>().ReverseMap();
         }
     }

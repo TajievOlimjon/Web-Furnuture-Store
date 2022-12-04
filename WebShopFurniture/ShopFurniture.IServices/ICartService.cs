@@ -1,5 +1,6 @@
 ﻿using WebShopFurniture.Models.EntitieDtos.ProductDtos;
 using WebShopFurniture.Models.Entities;
+using WebShopFurniture.ShopFurniture.Services;
 
 namespace WebShopFurniture.ShopFurniture.IServices
 {
@@ -7,5 +8,6 @@ namespace WebShopFurniture.ShopFurniture.IServices
     {
         ValueTask<int> AddToCart(int Id);
         ValueTask<List<Cart>> GetCarts();
+        CartService GetShopCart(IServiceProvider service);
     }
 }
