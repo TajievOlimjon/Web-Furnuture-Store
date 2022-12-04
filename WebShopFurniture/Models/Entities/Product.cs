@@ -18,9 +18,11 @@ namespace WebShopFurniture.Models.Entities
         public string FullDesc { get; set; }
         public DateTimeOffset date { get; set; }  // дата производства ?
         public string FurnitureMadeOf { get; set; }  // из чего сделано ?
+
         [Required(ErrorMessage ="Введите цену")]
         [Display(Name ="Цена")]
         public int Price { get; set; }
+
         [Required(ErrorMessage = "Введите количество продукта")]
         [Display(Name = "Количество")]
         public int Quantity { get; set; }

@@ -65,8 +65,8 @@
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
-                            <span>Web Designer</span>
+                            <h6>Tajiev Olimjon</h6>
+                            <span>.Net developer</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -75,7 +75,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                                 <i class="bi bi-person"></i>
-                                <span>My Profile</span>
+                                <span>Мой профиль</span>
                             </a>
                         </li>
                         <li>
@@ -85,7 +85,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                                 <i class="bi bi-gear"></i>
-                                <span>Account Settings</span>
+                                <span>Настройки учетной записи</span>
                             </a>
                         </li>
                         <li>
@@ -95,7 +95,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                                 <i class="bi bi-question-circle"></i>
-                                <span>Need Help?</span>
+                                <span>Нужна помощь?</span>
                             </a>
                         </li>
                         <li>
@@ -105,7 +105,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
+                                <span>Выход</span>
                             </a>
                         </li>
 
@@ -193,22 +193,12 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-gem"></i><span>Корзина</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="icons-bootstrap.html">
-                            <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="icons-remix.html">
-                            <i class="bi bi-circle"></i><span>Remix Icons</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="icons-boxicons.html">
-                            <i class="bi bi-circle"></i><span>Boxicons</span>
+                        <a asp-area="Admin" asp-controller="Cart" asp-action="Index">
+                            <i class="bi bi-circle"></i><span>Все данные в корзине</span>
                         </a>
                     </li>
                 </ul>

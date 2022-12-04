@@ -1,1 +1,27 @@
-﻿
+﻿@model ProductDto
+<div class="row">
+    <h3>Добавления товара в корзину</h3>
+    <form asp-action="AddToCart" asp-controller="Cart" method="post" class="form-horizontal">
+      
+        <input asp-for="Id" type="hidden" />
+        
+        <div class="form-group">
+            <label asp-for="ProductName">Названия: </label>
+            <b>@Model.ProductName</b>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price">Цена: </label>
+            <b>@Model.Price</b>
+        </div>
+        <div class="form-group">
+            <label asp-for="Quantity">Вводите количество покупаемых товаров ?</label>
+            <div class="col-md-5">
+                <input type="text" asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+        </div>
+        <input class="btn btn-outline-success" type="submit" value="Добавить" />
+        <a asp-action="AddAllToCart" asp-controller="Cart" asp-route-id="@Model.Id" class="btn btn-outline-success">Брать всё</a>
+    </form>
+</div>
+

@@ -2,12 +2,13 @@
 
 <div class="container">
 
-    @foreach (var car in Model)
+    @foreach (var item in Model)
     {
-        <div class="alert alert-warning mt-10">
-            <input type="hidden" asp-for="@car.Product.Id" />
-            <b>Мебель:</b>@car.Product.ProductName<br />
-            <b content="TJS">Цена:</b>@car.Product.Price c.
+        <div class="alert alert-warning mt-20">
+            <input type="hidden" asp-for="@item.Product.Id" />
+            <b>Названия:</b>@item.Product.ProductName<br />
+            <b content="TJS">Цена:</b>@item.Product.Price c.<br/>
+            <b>Количество:</b>@item.Quantity штук.
         </div>
     }
     <hr />

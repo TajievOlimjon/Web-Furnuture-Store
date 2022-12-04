@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
-using System.Reflection;
 using WebShopFurniture.Models.Entities;
 
 namespace WebShopFurniture.Data.DataContextDb
@@ -13,7 +11,9 @@ namespace WebShopFurniture.Data.DataContextDb
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-           // builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            // builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+           
         }
 
         public DbSet<Product> Products { get; set; }

@@ -5,7 +5,7 @@ using WebShopFurniture.ShopFurniture.IServices;
 
 namespace WebShopFurniture.ShopFurniture.Services
 {
-    public class CartService:ICartService
+    public class CartService
     {
         private readonly ApplicationContext _context;
         public string CartId { get; set; }
@@ -13,21 +13,21 @@ namespace WebShopFurniture.ShopFurniture.Services
         {
             _context = context;
         }
-        public static CartService GetShopCart(IServiceProvider service)
+        public static  CartService GetShopCart(IServiceProvider service)
         {
             ISession? session =
                 service.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-            ApplicationContext? context = service.GetService<ApplicationContext>();
+            var context = service.GetService<ApplicationContext>();
             string CartId = session.GetString("cartId") ?? Guid.NewGuid().ToString();
             session.SetString("cartId", CartId);
 
             return new CartService(context) { CartId = CartId };
         }
-        public async ValueTask<int> AddToCart(int Id)
-        { 
+        public async ValueTask<int> AddAllToCart(int Id)
+        {
             try
             {
-                var item = 
+                var item =
                     await _context.Products.FindAsync(Id);
 
                 if (item == null) return 0;
@@ -49,7 +49,36 @@ namespace WebShopFurniture.ShopFurniture.Services
             catch (Exception ex)
             {
                 var massege = "В сервисе корзины что то не так ! , проверте ?";
-                throw new Exception(massege,ex.InnerException);
+                throw new Exception(massege, ex);
+            }
+        }
+        public async ValueTask<int> AddToCart(int Id,int q)
+        { 
+            try
+            {
+                var item = 
+                    await _context.Products.FindAsync(Id);
+
+                if (item == null) return 0;
+
+                var cart = new Cart
+                {
+                    ProductId = item.Id,
+                    CartId = CartId,
+                    Quantity = q
+                };
+
+                await _context.Carts.AddAsync(cart);
+
+                var x = await _context.SaveChangesAsync();
+
+                if (x == 0) return 0;
+                return x;
+            }
+            catch (Exception ex)
+            {
+                var massege = "В сервисе корзины что то не так ! , проверте ?";
+                throw new Exception(massege,ex);
             }
            
 
@@ -59,11 +88,15 @@ namespace WebShopFurniture.ShopFurniture.Services
         {
             try
             {
-                var carts = await (from c in _context.Carts
+                /*var carts = await (from c in _context.Carts
                                    where c.CartId == CartId
                                    join p in _context.Products on c.ProductId equals p.Id
                                    select c
-                                 ).ToListAsync();
+                                 ).ToListAsync();*/
+                var carts = await _context.Carts
+                           .Where(x => x.CartId == CartId)
+                           .Include(x => x.Product)
+                           .ToListAsync();
                 return carts;
             }
             catch (Exception ex)
@@ -76,5 +109,13 @@ namespace WebShopFurniture.ShopFurniture.Services
                  
         }
 
+        public async ValueTask<List<Cart>> GetAllProductsFromCarts()
+        {
+            var carts = await _context.Carts
+                          .Include(x => x.Product)
+                          .ToListAsync();
+            return carts;
+        }
+ 
     }
 }

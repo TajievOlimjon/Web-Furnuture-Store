@@ -10,8 +10,10 @@
         public string FurnitureMadeOf { get; set; }  // из чего сделано ?
         public int Price { get; set; }
         public int Quantity { get; set; }
-        public IFormFile Image { get; set; }
+        public string? Image { get; set; }
+        public IFormFile? Img { get; set; }
         public string Manafacturer { get; set; }
+        public bool AvailableProduct { get; set; }
         public DateTimeOffset CreateAt { get; set; }
         public int CategoryId { get; set; }
     }

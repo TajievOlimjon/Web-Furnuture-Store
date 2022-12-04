@@ -8,8 +8,8 @@ namespace WebShopFurniture.ShopFurniture.Services
     public class OrderService:IOrderService
     {
         private readonly ApplicationContext _context;
-        private readonly ICartService _cartService;
-        public OrderService(ApplicationContext context, ICartService cartService)
+        private  CartService _cartService;
+        public OrderService(ApplicationContext context, CartService cartService)
         {
             _context = context;
             _cartService = cartService;
@@ -35,7 +35,7 @@ namespace WebShopFurniture.ShopFurniture.Services
 
                 foreach (var item in carts)
                 {
-                    if (item.Equals(null))
+                    if (!item.Equals(null))
                     {
                         var order = new Order
                         {
@@ -49,7 +49,7 @@ namespace WebShopFurniture.ShopFurniture.Services
                 }
                var x= await _context.SaveChangesAsync();
 
-                if(!x.Equals(0)) return  x;
+                if(x!=0) return  x;
 
                 _context.Customers.Remove(c);
                 await _context.SaveChangesAsync();
@@ -67,11 +67,10 @@ namespace WebShopFurniture.ShopFurniture.Services
 
         public async ValueTask<List<Order>> GetOrders()
         {
-            var orders = await (from order in _context.Orders
-                                join p in _context.Products on order.ProductId equals p.Id
-                                join c in _context.Customers on order.CustomerId equals c.Id
-                                select order
-                                ).ToListAsync();
+            var orders = await  _context.Orders
+                                .Include(x=>x.Product)
+                                .Include(c=>c.Customer)
+                                .ToListAsync();
             return orders;
         }
     }

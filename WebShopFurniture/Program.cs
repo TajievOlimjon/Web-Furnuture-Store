@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebShopFurniture.Data.DataContextDb;
 using WebShopFurniture.ExtensionMethods;
+using WebShopFurniture.ShopFurniture.IServices;
 using WebShopFurniture.ShopFurniture.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<ApplicationContext>(o =>
 
 builder.Services.AddServicesToContainer();
 
+/*ICartService cartService = null;*/ 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(sp => CartService.GetShopCart(sp));
 

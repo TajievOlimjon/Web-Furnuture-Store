@@ -1,7 +1,7 @@
 ﻿@model Customer
 <div class="row">
     <h3>Оформление заказа</h3>
-    <form asp-action="Create" asp-controller="Order" method="post" class="form-horizontal">
+    <form asp-action="AddToOrder" asp-controller="Order" method="post" class="form-horizontal">
         <div class="form-group">
             <label asp-for="FirstName"></label>
             <div class="col-md-5">
@@ -39,7 +39,7 @@
         </div>
         <input class="btn btn-success" type="submit" value="Завершить заказ" />
         <a asp-action="Index" asp-controller="Cart" class="btn btn-secondary">Отменить</a>
-        <a asp-action="Index" asp-controller="Product" class="btn">Товары</a>
+        <a asp-action="Index" asp-controller="Product" class="btn btn-success">Товары</a>
     </form>
 </div>
 

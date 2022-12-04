@@ -120,6 +120,9 @@ namespace WebShopFurniture.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("integer");
 
+                    b.Property<DateTimeOffset>("OrderDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("integer");
 
@@ -165,10 +168,6 @@ namespace WebShopFurniture.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Manafacturer")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Model")
                         .IsRequired()
                         .HasColumnType("text");
 
