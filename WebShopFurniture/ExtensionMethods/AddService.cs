@@ -11,7 +11,6 @@ namespace WebShopFurniture.ExtensionMethods
         {
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
-           // services.AddTransient<ICartService,CartService>();
             services.AddScoped<IOrderService,OrderService>();
             services.AddScoped<ICustomerService,CustomerService>();
 

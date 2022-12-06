@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "E/7fbQwBV6BQZWmeBW1+V/wgIJH48uhmeOBh28F/C6Y=",
+  "Hash": "qrnyF7PswZcqU3FrXiuJ2s+J8cIXfjSNuBeCWO9pMPc=",
   "Source": "WebShopFurniture",
   "BasePath": "_content/WebShopFurniture",
   "Mode": "Default",
@@ -14416,6 +14416,23 @@
       "OriginalItemSpec": "wwwroot\\Image\\56f0627d-c4e8-45e1-b94d-e4729808b957_honor.jpg"
     },
     {
+      "Identity": "C:\\Users\\Developer\\source\\repos\\WebShop\\WebShopFurniture\\wwwroot\\Image\\64e4644e-62be-4448-bc2f-91994ff935ce_furnuture.jpeg",
+      "SourceId": "WebShopFurniture",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Developer\\source\\repos\\WebShop\\WebShopFurniture\\wwwroot\\",
+      "BasePath": "_content/WebShopFurniture",
+      "RelativePath": "Image/64e4644e-62be-4448-bc2f-91994ff935ce_furnuture.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\64e4644e-62be-4448-bc2f-91994ff935ce_furnuture.jpeg"
+    },
+    {
       "Identity": "C:\\Users\\Developer\\source\\repos\\WebShop\\WebShopFurniture\\wwwroot\\Image\\6d7fd5f2-f65c-432b-b92b-57a5086136d8_furnuture.jpeg",
       "SourceId": "WebShopFurniture",
       "SourceType": "Discovered",
@@ -14433,6 +14450,23 @@
       "OriginalItemSpec": "wwwroot\\Image\\6d7fd5f2-f65c-432b-b92b-57a5086136d8_furnuture.jpeg"
     },
     {
+      "Identity": "C:\\Users\\Developer\\source\\repos\\WebShop\\WebShopFurniture\\wwwroot\\Image\\a6354747-86b8-4f88-aef7-cd1406adb723_стуль и стуля.jpeg",
+      "SourceId": "WebShopFurniture",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Developer\\source\\repos\\WebShop\\WebShopFurniture\\wwwroot\\",
+      "BasePath": "_content/WebShopFurniture",
+      "RelativePath": "Image/a6354747-86b8-4f88-aef7-cd1406adb723_стуль и стуля.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\a6354747-86b8-4f88-aef7-cd1406adb723_стуль и стуля.jpeg"
+    },
+    {
       "Identity": "C:\\Users\\Developer\\source\\repos\\WebShop\\WebShopFurniture\\wwwroot\\Image\\ac12a91b-56c8-46ef-9411-373f5225d61a_person1.jpeg",
       "SourceId": "WebShopFurniture",
       "SourceType": "Discovered",
@@ -14448,6 +14482,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Image\\ac12a91b-56c8-46ef-9411-373f5225d61a_person1.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\Developer\\source\\repos\\WebShop\\WebShopFurniture\\wwwroot\\Image\\ae357ab0-cc69-49c6-a9f7-bfdc12dc29cf_стуль и стуля.jpeg",
+      "SourceId": "WebShopFurniture",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Developer\\source\\repos\\WebShop\\WebShopFurniture\\wwwroot\\",
+      "BasePath": "_content/WebShopFurniture",
+      "RelativePath": "Image/ae357ab0-cc69-49c6-a9f7-bfdc12dc29cf_стуль и стуля.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\ae357ab0-cc69-49c6-a9f7-bfdc12dc29cf_стуль и стуля.jpeg"
     },
     {
       "Identity": "C:\\Users\\Developer\\source\\repos\\WebShop\\WebShopFurniture\\wwwroot\\Image\\befb8dae-3315-4dce-9f28-c6286b01c515_Mers.jpg",

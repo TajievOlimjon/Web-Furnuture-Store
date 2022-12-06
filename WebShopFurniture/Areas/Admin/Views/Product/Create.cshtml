@@ -1,4 +1,4 @@
-﻿@model ProductDto
+﻿@model CreateForProductDto
 <div class="row">
     <h3>Добавления товара</h3>
     <form asp-action="Create" asp-controller="Product" method="post" class="form-horizontal" asp-antiforgery="true" enctype="multipart/form-data">
@@ -67,10 +67,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Img">Фото продукта</label>
+            <label asp-for="Image">Фото продукта</label>
             <div class="col-md-5">
-                <input type="file" asp-for="Img" class="image" accept="image/*" alt="This is Image file " />
-                <span asp-validation-for="Img" class="text-danger"></span>
+                <input type="file" asp-for="Image" class="image" accept="image/*" alt="This is Image file " />
+                <span asp-validation-for="Image" class="text-danger"></span>
             </div>
         </div>
 

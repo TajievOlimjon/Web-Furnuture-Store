@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using WebShopFurniture.Data.DataContextDb;
+using WebShopFurniture.Models.EntitieDtos.ProductDtos;
 using WebShopFurniture.Models.Entities;
 using WebShopFurniture.ShopFurniture.IServices;
 
@@ -9,10 +11,19 @@ namespace WebShopFurniture.ShopFurniture.Services
     {
         private readonly ApplicationContext _context;
         public string CartId { get; set; }
+        public readonly ProductService _productService;
+        public readonly IMapper _mapper;
+        public CartService(ApplicationContext context, ProductService productService,IMapper mapper)
+        {
+            _context = context;
+            _productService = productService;
+            _mapper = mapper;
+        }
         public CartService(ApplicationContext context)
         {
             _context = context;
         }
+
         public static  CartService GetShopCart(IServiceProvider service)
         {
             ISession? session =
@@ -40,8 +51,12 @@ namespace WebShopFurniture.ShopFurniture.Services
                 };
 
                 await _context.Carts.AddAsync(cart);
-
                 var x = await _context.SaveChangesAsync();
+
+                var k =item.Quantity-cart.Quantity;
+                item.Quantity = k;
+
+                await UpdateProduct(item);
 
                 if (x == 0) return 0;
                 return x;
@@ -56,10 +71,11 @@ namespace WebShopFurniture.ShopFurniture.Services
         { 
             try
             {
-                var item = 
-                    await _context.Products.FindAsync(Id);
+                var item =
+                   await _context.Products.FindAsync(Id);
 
                 if (item == null) return 0;
+
 
                 var cart = new Cart
                 {
@@ -72,12 +88,21 @@ namespace WebShopFurniture.ShopFurniture.Services
 
                 var x = await _context.SaveChangesAsync();
 
+                var k = item.Quantity - cart.Quantity;
+                item.Quantity = k;
+
+
+
+               await UpdateProduct(item);
+
                 if (x == 0) return 0;
                 return x;
             }
             catch (Exception ex)
             {
-                var massege = "В сервисе корзины что то не так ! , проверте ?";
+                var massege = 
+                    " В сервисе корзины что то" +
+                    " пошло не так ! , проверте ? ";
                 throw new Exception(massege,ex);
             }
            
@@ -103,7 +128,7 @@ namespace WebShopFurniture.ShopFurniture.Services
             {
 
                 var massege = "В сервисе корзины что то не так ! , проверте ?";
-                throw new Exception(massege, ex.InnerException);
+                throw new Exception(massege, ex);
             }
             
                  
@@ -116,6 +141,32 @@ namespace WebShopFurniture.ShopFurniture.Services
                           .ToListAsync();
             return carts;
         }
- 
+        
+        private async ValueTask<int> UpdateProduct(Product product )
+        {
+            var item = 
+                await _context.Products.FindAsync(product.Id);
+
+            if (item == null) return 0;
+
+            /*_context.Attach(item);
+            _context.Entry(item).State = EntityState.Modified;*/
+            item.ProductName = product.ProductName;
+            item.ShortDesc = product.ShortDesc;
+            item.FullDesc = product.FullDesc;
+            item.date = product.date;
+            item.Manafacturer = product.Manafacturer;
+            item.FurnitureMadeOf = product.FurnitureMadeOf;
+            item.Price = product.Price;
+            item.Quantity = product.Quantity;
+            item.Image = product.Image;
+            item.AvailableProduct = product.AvailableProduct;
+            item.CategoryId = product.CategoryId;
+
+            var x=await  _context.SaveChangesAsync();
+
+            if (x == 0) return 0;
+            return x;
+        }
     }
 }

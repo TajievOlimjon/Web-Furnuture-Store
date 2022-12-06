@@ -14,9 +14,13 @@
             <b>@Model.Price</b>
         </div>
         <div class="form-group">
-            <label asp-for="Quantity">Вводите количество покупаемых товаров ?</label>
+            <label asp-for="Price">Количество товара в складе: </label>
+            <b>@Model.Quantity</b>
+        </div>
+        <div class="form-group">
+            <label asp-for="Quantity">Введите количество  покупаемых товаров ?</label>
             <div class="col-md-5">
-                <input type="text" asp-for="Quantity" class="form-control" />
+                <input type="text"  asp-for="Quantity" class="form-control" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
         </div>

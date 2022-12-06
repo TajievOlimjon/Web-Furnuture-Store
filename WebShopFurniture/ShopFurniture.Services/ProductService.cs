@@ -29,21 +29,23 @@ namespace WebShopFurniture.ShopFurniture.Services
         public async ValueTask<ProductDto> GetProductByIdAsync(int Id)
         {
             var item = await (from p in _context.Products
-                                  select new ProductDto
-                                  {
-                                      Id = p.Id,
-                                      ProductName = p.ProductName,
-                                      ShortDesc = p.ShortDesc,
-                                      FullDesc = p.FullDesc,
-                                      date = p.date,
-                                      Manafacturer = p.Manafacturer,
-                                      FurnitureMadeOf = p.FurnitureMadeOf,
-                                      Price = p.Price,
-                                      Quantity = p.Quantity,
-                                      Image = p.Image,
-                                      AvailableProduct = p.AvailableProduct,
-                                      CategoryId = p.CategoryId
-                                  }).FirstOrDefaultAsync();
+                              where p.Id==Id
+                              select new ProductDto
+                              {
+                                  Id = p.Id,
+                                  ProductName = p.ProductName,
+                                  ShortDesc = p.ShortDesc,
+                                  FullDesc = p.FullDesc,
+                                  date = p.date,
+                                  Manafacturer = p.Manafacturer,
+                                  FurnitureMadeOf = p.FurnitureMadeOf,
+                                  Price = p.Price,
+                                  Quantity = p.Quantity,
+                                  Image = p.Image,
+                                  AvailableProduct = p.AvailableProduct,
+                                  CategoryId = p.CategoryId
+                              }).FirstOrDefaultAsync();
+
             if (item == null) return null;
 
             return item;
@@ -103,15 +105,16 @@ namespace WebShopFurniture.ShopFurniture.Services
             if (x == 0) return 0;
             return x;
         }
-        public async ValueTask<int> AddProductAsync(ProductDto product)
+        public async ValueTask<int> AddProductAsync(CreateForProductDto product)
         {
             var productDto = _mapper.Map<Product>(product);
 
-            productDto.Image = AddProductFile(product.Img);
+            productDto.Image = AddProductFile(product.Image);
 
             await _context.Products.AddAsync(productDto);
 
             var x = await _context.SaveChangesAsync();
+
             if (x != 0)
             {
                 return x;

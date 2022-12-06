@@ -37,11 +37,11 @@ namespace WebShopFurniture.Areas.Admin.Controllers
 
             ViewBag.Categories = category;
 
-            return View(new ProductDto());
+            return View(new CreateForProductDto());
         }
 
         [HttpPost]
-        public async ValueTask<IActionResult> Create(ProductDto dto)
+        public async ValueTask<IActionResult> Create(CreateForProductDto dto)
         {
             var category =
                 await _serviceCat.GetCategoriesAsync();

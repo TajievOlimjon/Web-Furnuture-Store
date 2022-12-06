@@ -39,7 +39,8 @@ namespace WebShopFurniture.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                var massege = "В контроллере корзины что то не так ! , проверте ?";
+                throw new Exception(massege, ex);
             }
         }
 
@@ -48,28 +49,23 @@ namespace WebShopFurniture.Controllers
         {
             var item =
                 await _productService.GetProductByIdAsync(Id);
-            item.Quantity = 0;
+            //item.Quantity = 0;
             return View(item);
         }
         [HttpPost]
-        public async ValueTask<IActionResult> AddToCart(int Id,int quantity)
+        public async ValueTask<IActionResult> AddToCart(int Id,int Quantity)
         {
-            try
-            {
+           
 
                 if (!Id.Equals(null))
                 {
                 
-                    await _service.AddToCart(Id,quantity);
+                    await _service.AddToCart(Id,Quantity);
                     return RedirectToAction(nameof(Index));
                 }
                 
                 return View(Id);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+           
             
         }
     }

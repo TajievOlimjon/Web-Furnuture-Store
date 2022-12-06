@@ -10,7 +10,8 @@
                 <img class="img-thumbnail" src="~/Image/@item.Image" alt="@item.ProductName" />
                 <h2>@item.ProductName</h2>
                 <p content="TJS">Цена:@item.Price c. </p>
-                <p><a class="btn btn-success" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">Подробне</a></p>
+                <p content="TJS">Количство:@item.Quantity ш. </p>
+                <p><a class="btn btn-info" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">Подробне</a></p>
                 <p><a class="btn btn-success" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id">Добавить в корзину</a></p>
 
             </div>
