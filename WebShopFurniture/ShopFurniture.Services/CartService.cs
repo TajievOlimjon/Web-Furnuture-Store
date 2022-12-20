@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WebShopFurniture.Data.DataContextDb;
-using WebShopFurniture.Models.EntitieDtos.ProductDtos;
 using WebShopFurniture.Models.Entities;
 using WebShopFurniture.ShopFurniture.IServices;
 
@@ -11,9 +10,9 @@ namespace WebShopFurniture.ShopFurniture.Services
     {
         private readonly ApplicationContext _context;
         public string CartId { get; set; }
-        public readonly ProductService _productService;
+        public readonly IProductService _productService;
         public readonly IMapper _mapper;
-        public CartService(ApplicationContext context, ProductService productService,IMapper mapper)
+        public CartService(ApplicationContext context, IProductService productService,IMapper mapper)
         {
             _context = context;
             _productService = productService;
@@ -67,12 +66,13 @@ namespace WebShopFurniture.ShopFurniture.Services
                 throw new Exception(massege, ex);
             }
         }
-        public async ValueTask<int> AddToCart(int Id,int q)
+        public async Task<int> AddToCart(int Id,int q)
         { 
             try
             {
                 var item =
-                   await _context.Products.FindAsync(Id);
+                    await _productService.GetProductByIdAsync(Id);
+                   /*await _context.Products.FindAsync(Id);*/
 
                 if (item == null) return 0;
 
@@ -92,8 +92,8 @@ namespace WebShopFurniture.ShopFurniture.Services
                 item.Quantity = k;
 
 
-
-               await UpdateProduct(item);
+                await _productService.UpdateProductAsync(item);
+              // await UpdateProduct(item);
 
                 if (x == 0) return 0;
                 return x;

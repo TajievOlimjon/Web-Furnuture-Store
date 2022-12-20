@@ -5,11 +5,11 @@ namespace WebShopFurniture.ShopFurniture.IServices
 {
     public interface IProductService
     {
-        ValueTask<List<ProductDto>> GetProductsAsync();
-        ValueTask<ProductDto> GetProductByIdAsync(int Id);
-        ValueTask<int> AddProductAsync(CreateForProductDto product);
-        ValueTask<int> UpdateProductAsync(ProductDto product);
-        ValueTask<int> DeleteProductAsync(int Id);
-        ValueTask<List<Product>> GetAvailableProducts();
+        Task<List<Product>> GetProductsAsync();
+        Task<Product> GetProductByIdAsync(int Id);
+        Task<int> AddProductAsync(CreateForProductDto product);
+        Task<int> UpdateProductAsync(UpdateForProductDto product);
+        Task<int> DeleteProductAsync(int Id);
+        Task<List<Product>> GetAvailableProducts();
      }
 }

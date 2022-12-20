@@ -1,4 +1,4 @@
-﻿using WebShopFurniture.Models.EntitieDtos.ProductDtos;
+﻿using WebShopFurniture.Models.EntitieDtos.CategoryDtos;
 using WebShopFurniture.Models.Entities;
 
 namespace WebShopFurniture.ShopFurniture.IServices

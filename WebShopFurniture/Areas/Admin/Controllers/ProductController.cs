@@ -8,14 +8,16 @@ namespace WebShopFurniture.Areas.Admin.Controllers
     {  
         private readonly IProductService _service;
         private readonly ICategoryService _serviceCat;
-        private ILogger<ProductController> _logger;
-        public ProductController(IProductService service, ICategoryService serviceCat,ILogger<ProductController> logger)
+        private readonly ILogger<ProductController> _logger;
+        public ProductController(IProductService service,
+            ICategoryService serviceCat,
+            ILogger<ProductController> logger)
         {
             _service = service;
             _serviceCat = serviceCat;
             _logger = logger;
         }
-        public async ValueTask<IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             var products=
                 await _service.GetProductsAsync();
@@ -23,35 +25,51 @@ namespace WebShopFurniture.Areas.Admin.Controllers
             return View(products);
         }
 
-        public async ValueTask<ActionResult<ProductDto>> Details(int id)
+        public async Task<ActionResult<GetProductDto>> Details(int id)
         {
             var product = await _service.GetProductByIdAsync(id);
-                 
-            return View(product);
+
+            var p = new GetProductDto
+            {
+                Id = product.Id,
+                ProductName = product.ProductName,
+                ShortDesc = product.ShortDesc,
+                FullDesc = product.FullDesc,
+                date = product.date,
+                Manafacturer = product.Manafacturer,
+                FurnitureMadeOf = product.FurnitureMadeOf,
+                Price = product.Price,
+                Quantity = product.Quantity,
+                Image = product.Image,
+                AvailableProduct = product.AvailableProduct,
+                CategoryId = product.CategoryId
+            };
+
+            return View(p);
         }
 
-        public async ValueTask<IActionResult> Create()
+        public async Task<IActionResult> Create()
         {
             var category =
                 await _serviceCat.GetCategoriesAsync();
 
             ViewBag.Categories = category;
-
             return View(new CreateForProductDto());
         }
 
         [HttpPost]
-        public async ValueTask<IActionResult> Create(CreateForProductDto dto)
+        public async Task<IActionResult> Create(CreateForProductDto dto)
         {
             var category =
                 await _serviceCat.GetCategoriesAsync();
             ViewBag.Categories = category;
 
             dto.CreateAt = DateTimeOffset.UtcNow;
+
             try
             { 
                 if (ModelState.IsValid)
-                {   
+                {
                     await _service.AddProductAsync(dto);
                     return RedirectToAction("Index");
                 }
@@ -60,6 +78,7 @@ namespace WebShopFurniture.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message, "Ошибка в коде !");
+
                 throw new Exception(ex.Message);
             }
         }
@@ -74,11 +93,27 @@ namespace WebShopFurniture.Areas.Admin.Controllers
             var product =
                 await _service.GetProductByIdAsync(id);
 
-            return View(product);
+            var p = new UpdateForProductDto
+            {
+                Id = product.Id,
+                ProductName = product.ProductName,
+                ShortDesc = product.ShortDesc,
+                FullDesc = product.FullDesc,
+                date = product.date,
+                Manafacturer = product.Manafacturer,
+                FurnitureMadeOf = product.FurnitureMadeOf,
+                Price = product.Price,
+                Quantity = product.Quantity,
+                Image = product.Image,
+                AvailableProduct = product.AvailableProduct,
+                CategoryId = product.CategoryId
+            };
+
+            return View(p);
         }
 
         [HttpPost]
-        public async ValueTask<IActionResult> Edit(ProductDto dto)
+        public async ValueTask<IActionResult> Edit(UpdateForProductDto dto)
         {
             //try
             //{
@@ -87,7 +122,7 @@ namespace WebShopFurniture.Areas.Admin.Controllers
                 ViewBag.Categories = category;
 
                 if (ModelState.IsValid)
-                {
+                {   
                     await  _service.UpdateProductAsync(dto);
                     return RedirectToAction("Index");
                 }

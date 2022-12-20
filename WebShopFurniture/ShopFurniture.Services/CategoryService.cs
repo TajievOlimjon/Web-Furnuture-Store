@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WebShopFurniture.Data.DataContextDb;
-using WebShopFurniture.Models.EntitieDtos.ProductDtos;
+using WebShopFurniture.Models.EntitieDtos.CategoryDtos;
 using WebShopFurniture.Models.Entities;
 using WebShopFurniture.ShopFurniture.IServices;
 

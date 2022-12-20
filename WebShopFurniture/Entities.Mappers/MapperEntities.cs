@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using WebShopFurniture.Models.EntitieDtos.CategoryDtos;
 using WebShopFurniture.Models.EntitieDtos.ProductDtos;
 using WebShopFurniture.Models.Entities;
 
@@ -10,6 +11,7 @@ namespace WebShopFurniture.Entities.Mappers
         {
             CreateMap<ProductDto, Product>().ReverseMap();
             CreateMap<CreateForProductDto, Product>().ReverseMap();
+            CreateMap<UpdateForProductDto, Product>().ReverseMap();
             CreateMap<CategoryDto,Category>().ReverseMap();
         }
     }
